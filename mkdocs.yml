@@ -1,0 +1,86 @@
+site_name: stepCAN
+site_description: >-
+  A CANopen I/O bus whose node addresses come from the hardware, for DIN-rail
+  backplanes and distributed installations alike.
+site_url: https://ctrl32.com/docs/stepcan/
+repo_url: https://github.com/palo-krnac/stepCAN
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  language: en
+  features:
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - navigation.tracking
+    - content.code.copy
+    - toc.follow
+    - search.suggest
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: deep orange
+      toggle:
+        icon: material/weather-night
+        name: Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: amber
+      toggle:
+        icon: material/weather-sunny
+        name: Light mode
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+
+plugins:
+  - search
+
+nav:
+  - stepCAN: index.md
+  - Overview:
+      - overview/index.md
+      - Introduction: overview/introduction.md
+      - System architecture: overview/architecture.md
+      - Deployment profiles: overview/deployment-profiles.md
+  - Physical layer:
+      - physical-layer/index.md
+      - Connectors and cable: physical-layer/connectors-and-cable.md
+      - CAN physical layer: physical-layer/can.md
+      - stepCAN chain: physical-layer/chain.md
+      - Protection: physical-layer/protection.md
+  - Protocol:
+      - protocol/index.md
+      - Enumeration: protocol/enumeration.md
+      - CANopen application layer: protocol/canopen.md
+      - Indicators: protocol/indicators.md
+  - Implementation:
+      - implementation/index.md
+      - Power distribution: implementation/power.md
+      - Module reference design: implementation/module-design.md
+      - Firmware architecture: implementation/firmware.md
+      - Commissioning and test: implementation/commissioning.md
+      - Reference BOM: implementation/bom.md
+  - Reference:
+      - reference/index.md
+      - Verification status: reference/verification.md
+      - Sources: reference/sources.md

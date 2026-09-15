@@ -1,0 +1,32 @@
+# The documentation is published by Sourcebook on ctrl32.com, which reads
+# these files straight from this repository. This workflow does NOT publish
+# anything — it guards the promise that makes that possible: the same files
+# must still build a plain MkDocs Material site, with no broken internal
+# link (`--strict` turns one into a red build).
+#
+# ⛔ There is deliberately no GitHub Pages deploy here. The repository is
+# private because the specification is not published yet; a Pages deploy
+# would either fail on a private repository or put the specification on the
+# open web, and neither is what „documentation on ctrl32.com" means.
+name: Portability
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  mkdocs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: mkdocs build --strict
