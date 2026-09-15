@@ -1,6 +1,6 @@
 ---
 title: Physical layer
-slug: index
+slug: physical-layer
 sidebar_position: 3
 sidebar_label: Physical layer
 description: Connectors, cable, the CAN segment, the stepCAN chain, and the surge protection cascade.

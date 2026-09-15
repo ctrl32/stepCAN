@@ -1,6 +1,6 @@
 ---
 title: Overview
-slug: index
+slug: overview
 sidebar_position: 2
 sidebar_label: Overview
 description: What stepCAN is, how it is put together, and where it is meant to be installed.

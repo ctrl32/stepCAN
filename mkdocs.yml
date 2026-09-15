@@ -56,31 +56,31 @@ plugins:
   - search
 
 nav:
-  - stepCAN: index.md
+  - stepCAN: stepcan/index.md
   - Overview:
-      - overview/index.md
-      - Introduction: overview/introduction.md
-      - System architecture: overview/architecture.md
-      - Deployment profiles: overview/deployment-profiles.md
+      - stepcan/overview/index.md
+      - Introduction: stepcan/overview/introduction.md
+      - System architecture: stepcan/overview/architecture.md
+      - Deployment profiles: stepcan/overview/deployment-profiles.md
   - Physical layer:
-      - physical-layer/index.md
-      - Connectors and cable: physical-layer/connectors-and-cable.md
-      - CAN physical layer: physical-layer/can.md
-      - stepCAN chain: physical-layer/chain.md
-      - Protection: physical-layer/protection.md
+      - stepcan/physical-layer/index.md
+      - Connectors and cable: stepcan/physical-layer/connectors-and-cable.md
+      - CAN physical layer: stepcan/physical-layer/can.md
+      - stepCAN chain: stepcan/physical-layer/chain.md
+      - Protection: stepcan/physical-layer/protection.md
   - Protocol:
-      - protocol/index.md
-      - Enumeration: protocol/enumeration.md
-      - CANopen application layer: protocol/canopen.md
-      - Indicators: protocol/indicators.md
+      - stepcan/protocol/index.md
+      - Enumeration: stepcan/protocol/enumeration.md
+      - CANopen application layer: stepcan/protocol/canopen.md
+      - Indicators: stepcan/protocol/indicators.md
   - Implementation:
-      - implementation/index.md
-      - Power distribution: implementation/power.md
-      - Module reference design: implementation/module-design.md
-      - Firmware architecture: implementation/firmware.md
-      - Commissioning and test: implementation/commissioning.md
-      - Reference BOM: implementation/bom.md
+      - stepcan/implementation/index.md
+      - Power distribution: stepcan/implementation/power.md
+      - Module reference design: stepcan/implementation/module-design.md
+      - Firmware architecture: stepcan/implementation/firmware.md
+      - Commissioning and test: stepcan/implementation/commissioning.md
+      - Reference BOM: stepcan/implementation/bom.md
   - Reference:
-      - reference/index.md
-      - Verification status: reference/verification.md
-      - Sources: reference/sources.md
+      - stepcan/reference/index.md
+      - Verification status: stepcan/reference/verification.md
+      - Sources: stepcan/reference/sources.md

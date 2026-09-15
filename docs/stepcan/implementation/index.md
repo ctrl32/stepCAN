@@ -1,6 +1,6 @@
 ---
 title: Implementation
-slug: index
+slug: implementation
 sidebar_position: 5
 sidebar_label: Implementation
 description: Power distribution, the module reference design, firmware architecture, commissioning and the bill of materials.

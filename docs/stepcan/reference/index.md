@@ -1,6 +1,6 @@
 ---
 title: Reference
-slug: index
+slug: reference
 sidebar_position: 6
 sidebar_label: Reference
 description: Verification status of every figure that was open in revision 0.1, declared deviations, and the full source list.

@@ -1,6 +1,6 @@
 ---
 title: Protocol
-slug: index
+slug: protocol
 sidebar_position: 4
 sidebar_label: Protocol
 description: Enumeration, the CANopen application layer, and the status indicators.

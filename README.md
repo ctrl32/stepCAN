@@ -14,7 +14,7 @@ navigation. It builds unchanged with the Sourcebook platform, with MkDocs
 Material, or with Docusaurus.
 
 ```
-docs/
+docs/stepcan/
 ├── index.md                      landing page
 ├── overview/                     what it is, architecture, deployment profiles
 ├── physical-layer/               connectors, cable, CAN, chain, protection
@@ -81,3 +81,21 @@ withdrawn upgrade recommendation. See
 
 Four documentary points remain partially settled; none blocks the design, and
 each is listed with the document that would settle it.
+
+## Where it is published
+
+ctrl32.com serves this specification through **Sourcebook**, the
+documentation engine of fabrikaERP, which reads these files straight from
+this repository — no export step, no second copy. The pages appear under
+`/docs/stepcan/`.
+
+The book lives in `docs/stepcan/` rather than directly in `docs/` on
+purpose: Sourcebook builds a page's address by walking its folder index
+pages, so the folder is what keeps this specification a book of its own
+beside the ctrl32 manual instead of six loose sections mixed into it. Each
+folder's `index.md` declares the `slug:` that names its address segment.
+
+`.github/workflows/portability.yml` publishes nothing. It builds the same
+files with plain MkDocs Material and `--strict`, so a broken internal link
+turns the build red — that is the promise Sourcebook rests on: the files
+are the source, not an import.

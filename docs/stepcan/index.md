@@ -1,6 +1,6 @@
 ---
 title: stepCAN
-slug: index
+slug: stepcan
 sidebar_position: 1
 sidebar_label: stepCAN
 description: A CANopen I/O bus whose node addresses come from the hardware, for DIN-rail backplanes and distributed installations alike.
