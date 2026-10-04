@@ -77,7 +77,8 @@ Free CiA pages citable in place of paywalled text:
 | SITCORES SIT1051A / SIT1042 | CAN transceiver — **not suitable** | 19 kΩ min R_diff |
 | SITCORES SIT65HVD230 | CAN transceiver, 3.3 V | No guaranteed minimum R_diff published |
 | TI SN65HVD230 | CAN transceiver, 3.3 V | 40 kΩ min, but 16 pF fails the spacing rule at 64 nodes over 30 m |
-| TI TCAN1042 / TCAN1044 | CAN transceiver | 30–40 kΩ, real IEC ESD ratings |
+| **TI TCAN1042HV** | CAN transceiver — **Home level (0.3)** | 30 kΩ min R_diff, standby + bus wake-up, VIO, ±70 V bus fault, ±8 kV IEC 61000-4-2 powered; datasheet SLLSES7D (TCAN1042 family, rev. October 2021) |
+| TI TCAN1044V | CAN transceiver — Home runner-up | 40 kΩ min R_diff, standby 0.2 / 1 µA + I_IO 8.5 / 13.5 µA, SOT-23-THIN-8; datasheet SLLSFG2 |
 | NXP TJA1042 / TJA1051 / TJA1057 | CAN transceiver — **not suitable** | 19 kΩ min |
 | NXP TJA1050 | CAN transceiver, legacy | ±4 kV HBM all pins — **not inheritable by clones** |
 | **MaxLinear SP3490 / SP3491** | RS-485 transceiver | Full duplex, 8-pin; no with-load I_CC published |

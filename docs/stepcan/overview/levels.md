@@ -22,7 +22,7 @@ Revision 0.3 splits stepCAN into two **levels**. The protocol, the chain, the en
 | Termination | 120 Ω at both ends | 120 Ω at both ends |
 | Module power | local 24 V | **over the cable from one end**, within the budget of TR-H3 |
 | Reference MCU | STM32G0 / G4 | **ESP32-C6** |
-| CAN transceiver | SIT1050Q (TR-1) | TR-1 **plus** standby with bus wake-up and a 3.3 V logic supply (TR-H2) |
+| CAN transceiver | SIT1050Q (TR-1) | **TCAN1042HV**: TR-1 plus standby with bus wake-up and a 3.3 V logic supply (TR-H2) |
 | Sleep | **never** — modules run continuously | optional, per module (TR-H4) |
 | Enumeration, 64 modules | ≈0.5 s | ≈1.6 s |
 
@@ -85,7 +85,30 @@ A frame at 50 kbit/s takes ten times as long as at 500 kbit/s — an 8-byte fram
 !!! danger "The obvious standby transceivers fail TR-1"
     TJA1042, TJA1043, SIT1042 and SIT1051A all have standby and wake-up, and all of them are **19 kΩ minimum** — they miss the 64-node load bound ([CAN physical layer](../physical-layer/can.md#the-loading-calculation)). A Home design that reaches for TJA1042T/3 because it has VIO and standby is the TR-1 trap again.
 
-**Candidate: TCAN1042V / TCAN1042HV** — the TCAN1042 family is listed at 30 kΩ in this specification's loading table and the V variants carry VIO and a standby pin. *Open:* the standby current, the wake-up behaviour, C_diff (for the TR-6 spacing budget) and the IEC ESD rating are to be read from the datasheet before a design is frozen.
+**Selected: TCAN1042HV** (TI, SOIC-8 `TCAN1042HVDR`, or VSON-8 `TCAN1042HVDRBR`). *Quoted* from the TI datasheet, beside the runner-up:
+
+| | **TCAN1042HV** | TCAN1044V |
+|---|---|---|
+| R_diff (TR-1) | **30 / 80 kΩ** min / max — meets TR-1, N_max 100 | 40 / 90 kΩ — N_max 133 |
+| C_diff | 12 typ / **15 max** pF | 10 pF typ, no max published |
+| Standby supply | I_CC 0.5 / 5 µA (V variant: **VCC not needed in standby**) + I_IO 12 / 17 µA | I_CC 0.2 / 1 µA + I_IO 8.5 / 13.5 µA |
+| Bus wake-up | WUP, t_WK_FILTER 0.5–1.85 µs, reported on RXD | WUP, t_WK_FILTER 0.5–1.8 µs, t_WK_TIMEOUT 0.8–6 ms, on RXD |
+| VCC / VIO | 5 V / 3.3 V supported | 4.5–5.5 V / 1.7–5.5 V |
+| Bus fault protection | **±70 V** | ±58 V |
+| Receiver common mode | **±30 V** | ±12 V |
+| IEC 61000-4-2 on CANH/CANL | **±8 kV powered, ±15 kV unpowered** (contact) | not found in the datasheet |
+| Loop delay | 100 typ / 160 max ns | 125 / 210 ns |
+| Package | **SOIC-8**, VSON-8 | SOT-23-THIN-8 |
+
+Why the HV and not the 1044V, although the 1044V has more TR-1 margin:
+
+- **Footprint.** The SOIC-8 pinout is the SIT1050Q's — TXD 1, GND 2, VCC 3, RXD 4, CANL 6, CANH 7 — with pin 5 VIO instead of Vref and pin 8 STB instead of S. One CAN footprint serves the Industrial and the Home board.
+- **A house is not a cabinet.** 24 V travels in the same RJ45 as the CAN pair; ±70 V bus-fault tolerance survives a miswired crimp, ±30 V common mode covers a ground offset on a 150 m line with room to spare, and the IEC system-level ESD figure is published.
+- **The 5 V rail can be switched off in sleep.** The V variant needs only VIO in standby, so a sleeping Home module keeps 3.3 V for the C6 and drops the transceiver's 5 V supply.
+
+*Derived* — the spacing budget with the HV's 15 pF maximum, the same TVS and parasitics as the [spacing table](../physical-layer/can.md#bus-capacitance-and-node-spacing): C_L ≈ 24.4 pF, minimum spacing 0.98 × 24.4 / 48 ≈ **0.50 m**. Exactly TR-6's 0.5 m; on a Home line 64 modules over 150 m average 2.3 m. On an Industrial 30 m segment with 64 modules it would leave no margin — the Industrial board keeps the SIT1050Q.
+
+Every frame wakes a standby transceiver: at 50 kbit/s a bit is 20 µs, far longer than t_WK_FILTER, so a single frame is a valid wake-up pattern. This is what TR-H4 builds on.
 
 ### ESP32-C6 against the module requirements
 
@@ -153,7 +176,7 @@ Industrial modules never sleep. A Home module may, and at 150 m it does not have
 
 | Item | What is needed |
 |---|---|
-| Home CAN transceiver | TCAN1042V/HV datasheet: standby current, wake-up, C_diff for TR-6, IEC ESD — or another part meeting TR-H2 |
+| Home CAN transceiver | **Selected: TCAN1042HV** (figures quoted above). Open only: its normal-mode recessive I_CC at 5 V for the TR-H3 budget, to be measured on the first board |
 | Low-power chain transceiver | a full-duplex RS-485 part with low quiescent current for sleeping modules |
 | Selective wake-up | a partial-networking transceiver that also meets TR-1 |
 | 150 m on real cable | measure the far-node differential and the error counters on a 150 m Cat5e line with 64 modules (or their equivalent load) before the level is called proven |
