@@ -54,6 +54,9 @@ This is the profile where the chain earns its keep, because no slot-coding schem
 
 ### Buildings and home automation
 
+!!! tip "A whole house on one line: use stepCAN Home"
+    The notes below are for building I/O on the **Industrial** level (500 kbit/s, 30 m, local 24 V). A line through a whole house — up to 150 m, modules in series, powered over the cable — is the **Home** level of revision 0.3: [Industrial and Home](./levels.md).
+
 The distributed profile is directly usable for building I/O — lighting, blinds, heating zones, access control. Practical notes:
 
 - **Sub-distribution boards are the natural module locations.** Put a small DIN group inside each board and run cable between boards. That is Profile C, and it sidesteps the minimum-spacing rule entirely.

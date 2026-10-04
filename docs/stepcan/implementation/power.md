@@ -41,6 +41,10 @@ Cat5e 24 AWG solid is 93.8 mΩ/m per conductor, so 187.6 mΩ/m of loop.
 3. If you do distribute power over the cable, **inject 24 V every 8 modules** and size for ≤0.5 A per segment.
 4. Fuse or current-limit each injection point. A shorted module must not take down the rack.
 
+## Home level — power over the cable
+
+The **Home** level of revision 0.3 is powered over the cable from one end on purpose: ≤ 0.5 A at 24 V per segment, ≤ 7.5 mA average per module, pin 6 as a second +24 V conductor, bistable relays only. The derivation and the rule (TR-H3) are on [Industrial and Home](../overview/levels.md#tr-h3-power-over-the-cable). Everything above remains the Industrial rule.
+
 ## Isolation
 
 For a 30 m in-building bus with a continuous 0 V reference, bus isolation is unnecessary and costs bit-timing margin. Isolate at the **I/O terminals**: optocoupled or magnetically isolated digital inputs, relay or opto-isolated outputs, isolated analogue front-ends. That is where the field-side energy is.

@@ -268,6 +268,10 @@ Six things are stated confidently across the internet, in datasheets and in appl
 5. **"A GDT is fitted in parallel with a hybrid-bonding capacitor."** It is not. That conflates a capacitive HF bond with an IEC 62561-3 isolating spark gap.
 6. **"Littelfuse CG3 is the 3-electrode data-line GDT family."** CG3 is a 2-electrode high-voltage series. The data-line family is SL1021A/B.
 
+## Open in revision 0.3 — the Home level
+
+The Home level is specified on paper; its open items are listed on [Industrial and Home](../overview/levels.md#open-in-this-revision): the Home CAN transceiver's datasheet figures, a low-power chain transceiver for sleeping modules, a selective-wake transceiver that meets TR-1, a measurement on a real 150 m line, and a measured module power figure.
+
 ## What remains partially settled
 
 Nothing blocks the design, but four documentary points would benefit from a copy of the primary text:

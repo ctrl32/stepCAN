@@ -4,7 +4,7 @@ Specification for a CANopen distributed I/O bus whose node addresses are derived
 from the hardware rather than configured — usable both as a DIN-rail backplane
 and as a bus spread across a machine or a building.
 
-**Revision 0.2 · 2026-09-15**
+**Revision 0.3 · 2026-10-04** — two levels: Industrial (500 kbit/s, 30 m) and Home (50 kbit/s, 150 m, power over the cable)
 
 ## What is in here
 

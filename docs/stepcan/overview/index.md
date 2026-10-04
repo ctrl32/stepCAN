@@ -14,3 +14,4 @@ Three pages that establish what the rest of the specification is about.
 - [Introduction](./introduction.md) — the design goals, the envelope, and how to read the evidence tags.
 - [System architecture](./architecture.md) — roles, the two channels, and the case for the chain against every alternative.
 - [Deployment profiles](./deployment-profiles.md) — backplane, distributed, mixed, and what changes between them.
+- [Industrial and Home](./levels.md) — the two levels of revision 0.3: 500 kbit/s in a machine, 50 kbit/s over 150 m through a house.

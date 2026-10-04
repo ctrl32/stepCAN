@@ -9,7 +9,7 @@ tags: [stepcan, canopen, fieldbus]
 
 # stepCAN
 
-**Revision 0.2 · 2026-09-15**
+**Revision 0.3 · 2026-10-04**
 
 A modular I/O bus that derives every node's address from the hardware itself.
 
@@ -17,13 +17,22 @@ One CAN segment carries the data. Alongside it runs a one-directional RS-485 **c
 
 The same electrical design serves two mechanical arrangements: modules packed onto a DIN-rail backplane, and modules spread across a machine or a building.
 
+Since revision 0.3 stepCAN has two **levels** on one protocol: **Industrial** (500 kbit/s, 30 m, local power, modules never sleep) and **Home** (50 kbit/s, up to 150 m, power over the cable, optional sleep, ESP32-C6). See [Industrial and Home](./overview/levels.md).
+
 ## Design envelope
+
+| Parameter | Industrial | Home |
+|---|---|---|
+| Modules per segment | 64 | 64 |
+| CAN bit rate | 500 kbit/s | 50 kbit/s |
+| Bus length | 25–30 m in the distributed profile (there is a *minimum*, see [CAN physical layer](./physical-layer/can.md)) | up to 150 m |
+| Module power | local 24 V | over the cable, ≤ 0.5 A per segment |
+| Sleep | never | optional |
+
+The rows below are common to both levels.
 
 | Parameter | Value |
 |---|---|
-| Modules per segment | 64 |
-| CAN bit rate | 500 kbit/s |
-| Bus length | 25–30 m in the distributed profile (there is a *minimum*, see [CAN physical layer](./physical-layer/can.md)) |
 | Protocol | CANopen — CiA 301 v4.2.0, CiA 305 v3.0.0, CiA 401-1 v3.1.0 |
 | Chain channel | RS-485, static level, one direction |
 | Cable | Cat5e F/UTP, 4 pairs |
@@ -46,6 +55,10 @@ The same electrical design serves two mechanical arrangements: modules packed on
   href: ./overview/deployment-profiles.md
   icon: layer-group
   text: DIN-rail backplane, distributed across a machine or house, and the mix of the two.
+- title: Industrial and Home
+  href: ./overview/levels.md
+  icon: house
+  text: The two levels - 500 kbit/s in a machine, 50 kbit/s over 150 m through a house with power on the cable.
 - title: CAN physical layer
   href: ./physical-layer/can.md
   icon: wave-square
@@ -59,6 +72,14 @@ The same electrical design serves two mechanical arrangements: modules packed on
   icon: clipboard-check
   text: Every open item from revision 0.1, now closed, with the sources that closed it.
 ```
+
+## What changed in revision 0.3
+
+!!! warning "A second level: stepCAN Home"
+    - **Two levels on one protocol.** Industrial is everything revision 0.2 specified. **Home** runs at **50 kbit/s over up to 150 m**, one linear segment through a house, modules powered **over the cable from one end** (pin 6 becomes a second +24 V conductor), reference MCU **ESP32-C6**.
+    - **Home transceiver (TR-H2):** TR-1 plus standby with bus wake-up plus a 3.3 V logic supply. TJA1042 and SIT1042 have standby and still fail TR-1.
+    - **Optional sleep for Home modules (TR-H4):** no SYNC and no heartbeat on a sleeping segment, wake-and-report instead, the node-ID kept in LP RAM across deep sleep. Industrial modules never sleep.
+    - Two manufacturer-specific objects: **0x5FFB** power class, **0x5FFA** report interval.
 
 ## What changed in revision 0.2
 

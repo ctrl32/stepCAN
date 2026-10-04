@@ -62,6 +62,7 @@ nav:
       - Introduction: stepcan/overview/introduction.md
       - System architecture: stepcan/overview/architecture.md
       - Deployment profiles: stepcan/overview/deployment-profiles.md
+      - Industrial and Home: stepcan/overview/levels.md
   - Physical layer:
       - stepcan/physical-layer/index.md
       - Connectors and cable: stepcan/physical-layer/connectors-and-cable.md
