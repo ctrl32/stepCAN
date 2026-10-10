@@ -66,6 +66,36 @@ STM32G0 and STM32G4 both fit comfortably and have FDCAN; the G0 is the cost-opti
 !!! danger "The crystal is not optional and not a cost-reduction target"
     A ceramic resonator will pass every bench test at room temperature and then fail intermittently in the field over temperature. Anyone proposing to remove the crystal should be shown the arithmetic in TR-5 first: the budget is ±4854 ppm total, and a resonator is ±3000 to ±5000 ppm before ageing.
 
+## ESP32-C6 reference module (ctrl32 node image)
+
+The ctrl32 node image for the ESP32-C6 carries the module behaviour of this
+specification as a second personality: no program runs on the module, its
+inputs and outputs are the CiA 401 channels, the address comes from the chain.
+The hardware decisions behind the reference module:
+
+| Decision | Choice | Why |
+|---|---|---|
+| The chain "you are next" | an RS-485 pair on RJ45 pins 4-5 (driver on the OUT connector, receiver on the IN connector) | 30 m between modules; the Home level's 150 m line in series |
+| Termination | the last module closes its own 120 Ω through a MOSFET and reports it in 0x5FFE | a module swap needs no DIP switch |
+| Transceiver | TCAN1042HV, its STB pin driven by the MCU | the Home level may sleep; Industrial never does |
+| MCU | ESP32-C6-WROOM-1 (Wi-Fi 6 stays for configuration, update, WEBview, MQTT beside the chain) | one image for the rack module and the Wi-Fi node |
+
+The C6 pin map of the reference module (the strapping pins 4/5/8/9/15 unused):
+
+| Function | GPIO |
+|---|---|
+| CAN TX / RX | 20 / 21 |
+| TCAN1042HV STB | 22 |
+| Terminator switch | 23 |
+| Chain OUT (RS-485 driver DI) | 18 |
+| Chain IN (RS-485 receiver RO) | 19 |
+| USB-Serial/JTAG (console, first flash) | 12 / 13 |
+| Module I/O - analog (ADC1) | 0, 1, 2, 3, 6 |
+| Module I/O - digital | 7, 10, 11, 16, 17 |
+
+The crystal requirement above applies unchanged: a module board carries a
+40 MHz crystal for the C6, never the internal RC.
+
 ## KiCad sheet structure
 
 A clean hierarchical split, one sheet per concern:
