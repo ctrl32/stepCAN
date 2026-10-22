@@ -4,10 +4,9 @@
 # must still build a plain MkDocs Material site, with no broken internal
 # link (`--strict` turns one into a red build).
 #
-# ⛔ There is deliberately no GitHub Pages deploy here. The repository is
-# private because the specification is not published yet; a Pages deploy
-# would either fail on a private repository or put the specification on the
-# open web, and neither is what „documentation on ctrl32.com" means.
+# There is deliberately no GitHub Pages deploy here: ctrl32.com is the one
+# published home of the specification, so a second copy on Pages would only
+# compete with it.
 name: Portability
 
 on:
