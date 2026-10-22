@@ -122,7 +122,7 @@ Every frame wakes a standby transceiver: at 50 kbit/s a bit is 20 µs, far longe
 | Non-volatile 0x1010 parameters | NVS in flash | **Never the node-ID** — unchanged |
 | Deep-sleep wake inputs | LP_IO 0…7 only | CHAIN_IN, the transceiver's RXD and any wake button go on these pins |
 
-The C6 has two TWAI controllers; a Home module uses one.
+The C6 has one TWAI controller, and a Home module uses it.
 
 ### Outputs and the power budget
 
