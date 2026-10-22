@@ -3,7 +3,7 @@ site_description: >-
   A CANopen I/O bus whose node addresses come from the hardware, for DIN-rail
   backplanes and distributed installations alike.
 site_url: https://ctrl32.com/docs/stepcan/
-repo_url: https://github.com/palo-krnac/stepCAN
+repo_url: https://github.com/ctrl32/stepCAN
 edit_uri: edit/main/docs/
 
 theme:
